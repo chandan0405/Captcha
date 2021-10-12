@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style >
+		#captcha_code{
+			margin-top: 10%;
+			text-align: center;
+		}
+		#usercaptcha
+		{
+			border: 0.2em solid black;
+            font-weight: bold;
+			height: 1.7em;
+			width: 20%;
+		}
+		#refresh
+		{
+			height: 3em;
+			width: 7em;
+			border-radius: 1em;
+			border: 0.1em solid black;
+			margin-top: 1em;
+             cursor: pointer;
+		}
+		#validate
+		{
+			height: 3em;
+			width: 7em;
+			border-radius: 1em;
+			border: 0.1em solid black;
+			margin-left: 0.5em;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body onload="generatecaptcha();">
+     <div id="captcha_code">
+      <p id="captcha">1234</p>
+        <input type="text" id="usercaptcha"> <br>
+          <button onclick="generatecaptcha()" id="refresh">Refresh</button>
+          <button onclick="validate()" id="validate">Validate</button>
+     </div>
+</body>
+<script >
+	function generatecaptcha()
+	{
+		//step1 Generate four digit random Number
+		var num1=Math.ceil(Math.random()*10)+'';
+       	var num2=Math.ceil(Math.random()*10)+'';
+		var num3=Math.ceil(Math.random()*10)+'';
+		var num4=Math.ceil(Math.random()*10)+'';
+		var captcha= num1+num2+num3+num4;
+
+		document.getElementById('captcha').innerHTML=captcha;
+
+	}
+	function validate()
+	{
+		//
+		var mcaptcha=document.getElementById('captcha').innerHTML;
+		var ucaptcha =document.getElementById('usercaptcha').value;
+		if(mcaptcha==ucaptcha)
+		{
+			alert("correct captcha ");
+		}
+		else{
+			alert("captcha mismatch");
+		}
+		document.getElementById('captcha_code').style.display="none";
+	}
+
+</script>
+</html>
